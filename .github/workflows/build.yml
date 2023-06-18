@@ -42,11 +42,6 @@ jobs:
          fi
         shell: bash
         
-      - name: cargo-install
-        uses: baptiste0928/cargo-install@v2.1.0
-        with:
-          crate: nu
-
       - name: Build binary
         uses: houseabsolute/actions-rust-cross@v0
         with:
@@ -54,6 +49,11 @@ jobs:
           target: ${{ matrix.platform.target }}
           args: "--release"
           strip: true
+
+      - name: cargo-install
+        uses: baptiste0928/cargo-install@v2.1.0
+        with:
+          crate: nu
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
